@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+        <title>{% block titulo %}{% endblock %}</title>
+        <style>
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f8f9fa;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        {%- set cliente = request.state.cliente -%}
+        <main class="container mt-3">
+            <div class="row">
+                <div class="col-12">
+                    {% include "includes/message.html" %}
+                </div>            
+                <div class="col-12">
+                    {% block topo %}{% endblock %}
+                </div>
+            </div>
+            {% block conteudo %}{% endblock %}
+        </main>
+        <script src="/static/lib/bootstrap/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

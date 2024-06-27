@@ -1,0 +1,28 @@
+{% extends "pages/base.html" %}
+{% block titulo %}Despensas{% endblock %}
+{% block conteudo %}    
+<div class='container'>
+    <div class="main">
+        <div class='introduction'>
+            <div class='title d-flex flex-wrap align-items-center justify-content-md-between'>
+                <h1>Despensas</h1>
+                <a href='./add_inventory.html' class='btn btn-primary'>Nova Despensa</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="table_body_inventory"></tbody>
+        </table>
+    </div>
+</div>
+<script src="/js/inventory/load-inventory.js"></script>
+{% endblock %}

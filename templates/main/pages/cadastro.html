@@ -1,78 +1,51 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer"/>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="lib/bootstrap-icons/font/bootstrap-icons.min.css"> 
-    <link rel='stylesheet' href='/css/index.css'>
-    <link rel='stylesheet' href='/css/icons.css'>
-    
-    <title>Cadastro</title>
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f8f9fa;
-        }
-    </style>
-</head>
-<body>
-    <header></header>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="card col-6">
-                <div class="card-body">
-                    <h1 class="card-title text-center mb-4">Cadastro</h1>
-                    <form id="registrationForm" class="json-form" method="post" action="/post_cadastro">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder=" ">
-                            <label for="email" class="form-label">Email:</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="nome" placeholder=" ">
-                            <label for="name" class="form-label">Nome Completo:</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder=" ">
-                            <label for="cpf" class="form-label">CPF:</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="telefone" name="telefone" data-mask="telefone" placeholder=" ">
-                            <label for="telefone">Telefone</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="date" class="form-control" id="dataNascimento" name="data_nascimento" placeholder=" ">
-                            <label for="dataNascimento">Data de Nascimento</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" name="senha" placeholder=" ">
-                            <label for="password" class="form-label">Senha:</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="re_password" name="confirmacao_senha" placeholder=" ">
-                            <label for="re_password" class="form-label">Confirmar senha:</label>
-                        </div>
-                        <div class="form-floating mb-3 d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
-                        </div>
-                    </form>
-                    <div class="text-center">
-                        <span>Já possui uma conta? <a href="/entrar" class="text-primary">Entrar</a></span>
+{% extends "pages/base_unauthenticated.html" %}
+{% block titulo %}Cadastro{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card col-6">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Cadastro</h1>
+                <form id="registrationForm" class="json-form" method="post" action="/post_cadastro">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder=" ">
+                        <label for="email" class="form-label">Email:</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="nome" placeholder=" ">
+                        <label for="name" class="form-label">Nome Completo:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder=" ">
+                        <label for="cpf" class="form-label">CPF:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="telefone" name="telefone" data-mask="telefone" placeholder=" ">
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="dataNascimento" name="data_nascimento" placeholder=" ">
+                        <label for="dataNascimento">Data de Nascimento</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="senha" placeholder=" ">
+                        <label for="password" class="form-label">Senha:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="re_password" name="confirmacao_senha" placeholder=" ">
+                        <label for="re_password" class="form-label">Confirmar senha:</label>
+                    </div>
+                    <div class="form-floating mb-3 d-grid">
+                        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <span>Já possui uma conta? <a href="/entrar" class="text-primary">Entrar</a></span>
                 </div>
             </div>
         </div>
-    </div>        
-
-    <footer></footer>
-    <script src="/static/js/formToJson.js"></script>
-    <script src="/static/js/inputMasks.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/auth/authentication.js"></script>
-    <script src="js/auth/user_registration.js"></script>
-</body>
+    </div>
+</div>        
+<script src="/static/js/formToJson.js"></script>
+<script src="/static/js/inputMasks.js"></script>
+{% endblock %}

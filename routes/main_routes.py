@@ -1,7 +1,7 @@
 import math
 from sqlite3 import DatabaseError
 from fastapi import APIRouter, HTTPException, Query, Request, status
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from dtos.entrar_dto import EntrarDTO
 from util.html import ler_html
@@ -22,6 +22,9 @@ router = APIRouter()
 templates = obter_jinja_templates("templates/main")
 
 
+@router.get("/", response_class=RedirectResponse)
+async def get_root():
+    return RedirectResponse("/cliente/despensa")
 
 @router.get("/cadastro")
 async def get_cadastro(request: Request):
@@ -87,7 +90,7 @@ async def post_entrar(entrar_dto: EntrarDTO):
     response = JSONResponse(content={"redirect": {"url": entrar_dto.return_url}})
     adicionar_mensagem_sucesso(
         response,
-        f"Olá, <b>{cliente_entrou.nome}</b>. Seja bem-vindo(a) à Loja Virtual!",
+        f"Olá, <b>{cliente_entrou.nome}</b>. Seja bem-vindo(a) ao seu controle de despensa!",
     )
     adicionar_cookie_auth(response, token)
     return response

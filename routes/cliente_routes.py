@@ -18,15 +18,6 @@ from util.templates import obter_jinja_templates
 router = APIRouter(prefix="/cliente")
 templates = obter_jinja_templates("templates/cliente")
 
-
-@router.get("/pedidos")
-async def get_pedidos(request: Request):
-    return templates.TemplateResponse(
-        "pages/pedidos.html",
-        {"request": request},
-    )
-
-
 @router.get("/cadastro")
 async def get_cadastro(request: Request):
     return templates.TemplateResponse(
@@ -85,3 +76,10 @@ async def get_sair(request: Request):
     adicionar_mensagem_sucesso(response, "Saída realizada com sucesso!")
     return response
 
+
+@router.get("/despensa")
+async def get_despensa(request: Request):
+    return templates.TemplateResponse(
+        "pages/despensa.html",
+        {"request": request},
+    )
