@@ -6,7 +6,7 @@
         <div class='introduction'>
             <div class='title d-flex flex-wrap align-items-center justify-content-md-between'>
                 <h1>Despensas</h1>
-                <a href='./add_inventory.html' class='btn btn-primary'>Nova Despensa</a>
+                <a href='/cliente/cadastrardespensa' class='btn btn-primary'>Nova Despensa</a>
             </div>
         </div>
     </div>
@@ -20,9 +20,19 @@
                 </tr>
             </thead>
 
-            <tbody id="table_body_inventory"></tbody>
+            <tbody id="table_body_inventory">
+                {% for despensa in despensas %}
+                <tr>
+                    <td><span>{{despensa.id}}</span></td>
+                    <td><span>{{despensa.nome}}</span></td>
+                    <td>
+                        <a href="/cliente/itemdespensa/{{despensa.id}}" class="text-primary"><i class="bi bi-list-check"></i> Itens</a> | 
+                        <a href="/cliente/excluirdespensa/{{despensa.id}}" class="text-danger"><i class="bi bi-trash3"></i> Apagar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
-<script src="/js/inventory/load-inventory.js"></script>
 {% endblock %}

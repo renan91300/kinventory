@@ -4,8 +4,11 @@ from fastapi.responses import JSONResponse, RedirectResponse
 
 from dtos.alterar_cliente_dto import AlterarClienteDTO
 from dtos.alterar_senha_dto import AlterarSenhaDTO
+from dtos.nova_despensa_dto import NovaDespensaDTO
 from models.cliente_model import Cliente
+from models.depensa import Despensa
 from repositories.cliente_repo import ClienteRepo
+from repositories.despensa_repo import DespensaRepo
 from util.auth import conferir_senha, obter_hash_senha
 from util.cookies import (
     adicionar_mensagem_alerta,
@@ -79,7 +82,47 @@ async def get_sair(request: Request):
 
 @router.get("/despensa")
 async def get_despensa(request: Request):
+    despensas = DespensaRepo.obter_todas()
     return templates.TemplateResponse(
         "pages/despensa.html",
+        {"request": request, "despensas": despensas},
+    )
+
+@router.get("/cadastrardespensa")
+async def get_cadastro_despensa(request: Request):
+    return templates.TemplateResponse(
+        "pages/cadastrar_despensa.html",
         {"request": request},
     )
+
+@router.post("/post_cadastro_despensa", response_class=JSONResponse)
+async def post_cadastro(request: Request, cadastro_dto: NovaDespensaDTO):
+    despensa_data = cadastro_dto.model_dump()
+    despensa_data["dono"] = request.state.cliente.id
+    response = JSONResponse({"redirect": {"url": "/cliente/despensa"}})
+    if DespensaRepo.inserir(Despensa(**despensa_data)):
+        adicionar_mensagem_sucesso(response, "Despensa cadastrada com sucesso!")
+    else:
+        adicionar_mensagem_erro(
+            response, "Não foi possível cadastrar a despensa!"
+        )
+    return response
+
+@router.get("/excluirdespensa/{id:int}")
+async def get_excluir_despensa(
+    request: Request, id: int
+): 
+    id_cliente = request.state.cliente.id
+
+    response = RedirectResponse("/cliente/despensa")
+
+    if not DespensaRepo.pertence_cliente(id, id_cliente):
+        adicionar_mensagem_erro(response, "Despensa não encontrada!")
+        return response
+
+    if DespensaRepo.excluir(id):
+        adicionar_mensagem_sucesso(response, "Despensa excluída com sucesso!")
+    else:
+        adicionar_mensagem_erro(response, "Não foi possível excluir a despensa!")
+    return response
+
