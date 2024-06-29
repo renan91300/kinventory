@@ -172,6 +172,7 @@ async def get_cadastro_item_despensa(request: Request, id_despensa: int):
             "id_despensa": id_despensa,
             "categorias": categorias,
             "produtos": produtos,
+            "item_despensa": None,
         },
     )
 
