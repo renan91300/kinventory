@@ -1,0 +1,42 @@
+{% extends "pages/base.html" %}
+{% block titulo %}Itens Despensa{% endblock %}
+{% block conteudo %}
+<div class='container'>
+    <div class="main">
+        <div class='introduction'>
+            <div class='title d-flex flex-wrap align-items-center justify-content-md-between'>
+                <h1>Itens Despensa - {{despensa.nome}}</h1>
+                <a href='/cliente/cadastrar_item_despensa/{{despensa.id}}' class='btn btn-primary'>Novo item</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Vencimento</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in itens_despensa %}
+                <tr>
+                    <td>{{item.nome}}</td>
+                    <td>{{item.quantidade}}</td>
+                    <td>{{item.data_validade}}</td>
+                    <td>
+                        <a href="/cliente/excluir_item_despensa/{{despensa.id}}/{{item.id_produto}}" class="text-danger"><i
+                                class="bi bi-trash3"></i>Apagar</a>
+                        <a href="/cliente/alterar_item_despensa/{{despensa.id}}/{{item.id_produto}}" class="text-primary"><i
+                                class="bi bi-pencil-square"></i> Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

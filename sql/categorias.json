@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "nome": "Frutas e Vegetais",
+        "descricao": "Inclui uma variedade de frutas frescas, legumes e verduras."
+    },
+    {
+        "id": 2,
+        "nome": "Carnes e Peixes",
+        "descricao": "Abrange todos os tipos de carnes e peixes, frescos ou congelados."
+    },
+    {
+        "id": 3,
+        "nome": "Laticínios",
+        "descricao": "Produtos derivados do leite, como queijo, iogurte e manteiga."
+    },
+    {
+        "id": 4,
+        "nome": "Pães e Massas",
+        "descricao": "Variedade de pães, massas frescas e secas."
+    },
+    {
+        "id": 5,
+        "nome": "Condimentos e Temperos",
+        "descricao": "Todos os tipos de ervas, especiarias e molhos para enriquecer os pratos."
+    },
+    {
+        "id": 6,
+        "nome": "Bebidas",
+        "descricao": "Inclui água, sucos, refrigerantes e bebidas alcoólicas."
+    },
+    {
+        "id": 7,
+        "nome": "Doces e Sobremesas",
+        "descricao": "Produtos para consumo como sobremesa ou lanche, incluindo chocolates e bolos."
+    },
+    {
+        "id": 8,
+        "nome": "Grãos e Cereais",
+        "descricao": "Alimentos básicos como arroz, feijão, quinoa e cereais matinais."
+    },
+    {
+        "id": 9,
+        "nome": "Produtos de Limpeza",
+        "descricao": "Itens essenciais para a limpeza e manutenção da cozinha."
+    },
+    {
+        "id": 10,
+        "nome": "Outros",
+        "descricao": "Categoria para itens que não se encaixam nas categorias anteriores."
+    }
+]

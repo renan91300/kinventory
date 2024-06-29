@@ -1,0 +1,44 @@
+{% extends "pages/base.html" %}
+{% block titulo %}Produtos{% endblock %}
+{% block conteudo %}
+<div class='container'>
+    <div class="main">
+        <div class='introduction'>
+            <div class='title d-flex flex-wrap align-items-center justify-content-md-between'>
+                <h1>Produtos</h1>
+                <a href='/cliente/cadastrar_produto' class='btn btn-primary'>Novo Produto</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descricao</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{produto.id}}</td>
+                    <td>{{produto.nome}}</td>
+                    <td><span class="texto-1-linha">{{produto.descricao}}</span></td>
+                    <td>{{produto.categoria}}</td>
+                    <td>
+                        <a href="/cliente/excluir_produto/{{produto.id}}" class="text-danger"><i
+                                class="bi bi-trash3"></i>Apagar</a>
+                        <a href="/cliente/alterar_produto/{{produto.id}}" class="text-primary"><i
+                                class="bi bi-pencil-square"></i> Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

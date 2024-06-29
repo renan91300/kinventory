@@ -6,7 +6,7 @@
         <div class='introduction'>
             <div class='title d-flex flex-wrap align-items-center justify-content-md-between'>
                 <h1>Despensas</h1>
-                <a href='/cliente/cadastrardespensa' class='btn btn-primary'>Nova Despensa</a>
+                <a href='/cliente/cadastrar_despensa' class='btn btn-primary'>Nova Despensa</a>
             </div>
         </div>
     </div>
@@ -26,8 +26,8 @@
                     <td><span>{{despensa.id}}</span></td>
                     <td><span>{{despensa.nome}}</span></td>
                     <td>
-                        <a href="/cliente/itemdespensa/{{despensa.id}}" class="text-primary"><i class="bi bi-list-check"></i> Itens</a> | 
-                        <a href="/cliente/excluirdespensa/{{despensa.id}}" class="text-danger"><i class="bi bi-trash3"></i> Apagar</a>
+                        <a href="/cliente/itens_despensa/{{despensa.id}}" class="text-primary"><i class="bi bi-list-check"></i> Itens</a> | 
+                        <a href="/cliente/excluir_despensa/{{despensa.id}}" class="text-danger"><i class="bi bi-trash3"></i> Apagar</a>
                     </td>
                 </tr>
                 {% endfor %}

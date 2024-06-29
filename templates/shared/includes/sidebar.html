@@ -5,11 +5,12 @@
             <span>Kinventory</span>
         </div>
 
+        {% set pagina_atual = request.url.path %}
         <div class='menu'>
             <ul>
-                <li><a href="/cliente/despensa"><span class="bi bi-box-seam"></span> <strong>Despensas</strong></a></li>
+                <li><a class="{{ 'active' if pagina_atual == '/cliente/despensa' }}" href="/cliente/despensa"><span class="bi bi-card-checklist"></span> Despensas</a></li>
 
-                <li><a href='shopping_list.html'><span class="bi bi-card-checklist""></span> Listas de compra</a></li>
+                <li><a class="{{ 'active' if pagina_atual == '/cliente/produtos' }}" href='/cliente/produtos'><span class="bi bi-box-seam"></span> Produtos</a></li>
 
 
             </ul>

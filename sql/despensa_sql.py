@@ -15,6 +15,13 @@ SQL_INSERIR = """
 SQL_OBTER_TODOS = """
     SELECT id, nome, dono
     FROM despensa
+    WHERE dono=?
+"""
+
+SQL_OBTER_POR_ID = """
+    SELECT id, nome, dono
+    FROM despensa
+    WHERE id=?
 """
 
 SQL_ALTERAR = """

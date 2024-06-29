@@ -1,0 +1,74 @@
+{% extends "pages/base.html" %}
+{% block titulo %}{{'Cadastrar' if funcao == 'cadastrar' else 'Alterar'}} Item Despensa{% endblock %}
+{% block conteudo %}
+<div class='container'>
+    <div class='main'>
+        <div class='introduction'>
+            <div class='title'>
+                <h1>Novo item</h1>
+            </div>
+        </div>
+
+        <div class='register'>
+            <form id='form-inventory-item' class="json-form" method="post"
+                action="/cliente/{{'post_cadastro_item_despensa' if funcao == 'cadastrar' else 'post_alterar_item_despensa'}}">
+                <div class='steps'>
+                    <div class='step step-1'>
+                        <div class='title'>
+                            <h2>Dados Básicos</h2>
+                        </div>
+
+                        <div class='fields'>
+                            <div class='row'>
+                                <div class='col-lg-6 field'>
+                                    <label for="inventoryProduct">Produto</label>
+
+                                    <select name="id_produto" id="inventoryProduct" class='form-control'>
+                                        <option value="">Selecione...</option>
+                                        {% for produto in produtos %}
+                                        <option {{'selected' if item_despensa.id_produto == produto.id}} value="{{produto.id}}">{{produto.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <br>
+
+                                    <label for='inventoryItemQuantity' class='form-label'>Quantidade</label>
+
+                                    <input type='text' class='form-control' id='inventoryItemQuantity' name="quantidade"
+                                        placeholder='' value='{{item_despensa.quantidade}}'>
+                                    <br>
+
+                                    <label for='inventoryItemExpirationDate' class='form-label'>Data de
+                                        vencimento</label>
+
+                                    <input type='date' class='form-control' id='inventoryItemExpirationDate'
+                                        name="data_validade" placeholder='' value='{{item_despensa.data_validade}}'>
+                                    <br>
+
+                                    <input type="hidden" name="id_despensa" value="{{id_despensa}}">
+
+                                    <span class='error'></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='buttons justify-content-start'>
+                    <div class='previous'>
+                        <button type='button' class='btn btn-outline-danger' onclick="history.back()">Cancelar</button>
+                    </div>
+                    <div class='submit'>
+                        <button type='submit' class='btn btn-success'>Salvar</button>
+                    </div>
+                </div>
+
+                <div class='results mt-3'>
+                    <span class='success'></span>
+                    <span class='error'></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static/js/formToJson.js"></script>
+{% endblock %}

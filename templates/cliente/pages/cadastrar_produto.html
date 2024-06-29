@@ -1,0 +1,72 @@
+{% extends "pages/base.html" %}
+{% block titulo %}{{'Cadastrar' if funcao == 'cadastrar' else 'Alterar'}} Produto{% endblock %}
+{% block conteudo %}
+<div class='container'>
+    <div class='main'>
+        <div class='introduction'>
+            <div class='title'>
+                <h1>{{'Novo' if funcao == 'cadastrar' else 'Alterar'}} Produto</h1>
+            </div>
+        </div>
+
+        <div class='register'>
+            <form id='form-inventory-item' class="json-form" method="post"
+                action="/cliente/{{'post_cadastro_produto' if funcao == 'cadastrar' else 'post_alterar_produto'}}">
+                <div class='steps'>
+                    <div class='step step-1'>
+                        <div class='title'>
+                            <h2>Dados Básicos</h2>
+                        </div>
+
+                        <div class='fields'>
+                            <div class='row'>
+                                <div class='col-lg-6 field'>
+                                    <label for='productName' class='form-label'>Nome do Produto</label>
+
+                                    <input type='text' class='form-control' id='productName' name="nome"
+                                        placeholder='' value='{{produto.nome}}'>
+                                    <br>
+
+                                    <label for='productDesc' class='form-label'>Descrição</label>
+
+                                    <input type='text' class='form-control' id='productDesc' name="descricao"
+                                        placeholder='' value='{{produto.descricao}}'>
+                                    <br>
+
+                                    <label for="productCategory">Categoria</label>
+
+                                    <select name="categoria" id="productCategory" class='form-control'>
+                                        <option value="">Selecione...</option>
+                                        {% for categoria in categorias %}
+                                        <option {{ 'selected' if produto.categoria == categoria.nome }} value="{{categoria.id}}">{{categoria.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <input type="hidden" name="id" value="{{produto.id}}">
+
+                                    <span class='error'></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='buttons justify-content-start'>
+                    <div class='previous'>
+                        <button type='button' class='btn btn-outline-danger' onclick="history.back()">Cancelar</button>
+                    </div>
+                    <div class='submit'>
+                        <button type='submit' class='btn btn-success'>Salvar</button>
+                    </div>
+                </div>
+
+                <div class='results mt-3'>
+                    <span class='success'></span>
+                    <span class='error'></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static/js/formToJson.js"></script>
+{% endblock %}

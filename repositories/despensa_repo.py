@@ -34,13 +34,24 @@ class DespensaRepo:
             return None
 
     @classmethod
-    def obter_todas(cls) -> List[Despensa]:
+    def obter_todas(cls, id_cliente: int) -> List[Despensa]:
         try:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
-                tuplas = cursor.execute(SQL_OBTER_TODOS).fetchall()
+                tuplas = cursor.execute(SQL_OBTER_TODOS, (id_cliente,)).fetchall()
                 despensas = [Despensa(*t) for t in tuplas]
                 return despensas
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+    
+    @classmethod
+    def obter_por_id(cls, id: int) -> Optional[Despensa]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_POR_ID, (id,)).fetchone()
+                return Despensa(*tupla)
         except sqlite3.Error as ex:
             print(ex)
             return None
