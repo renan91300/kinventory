@@ -346,3 +346,11 @@ async def get_excluir_produto(request: Request, id: int):
     else:
         adicionar_mensagem_erro(response, "Não foi possível excluir o produto!")
     return response
+
+
+@router.get("/sobre")
+async def get_sobre(request: Request):
+    return templates.TemplateResponse(
+        "pages/sobre.html",
+        {"request": request},
+    )
